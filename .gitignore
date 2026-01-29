@@ -174,3 +174,8 @@ CLAUDE.md
 !.fvmrc
 !.gitignore
 !.cursorrules
+!.claude/
+!.cursor/
+!.claude/
+!.cursor/
+!.vscode/
