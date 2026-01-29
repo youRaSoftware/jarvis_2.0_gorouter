@@ -1,23 +1,37 @@
-import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-// Export features to access all routes
+// Export features to access all screens
 export 'package:features/features.dart';
 
 export '../services/screen_logs_route_observer.dart';
+export 'router_constants.dart';
 
-part 'app_router.gr.dart';
+final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-@AutoRouterConfig(replaceInRouteName: 'Form|Screen|Step,Route')
-class AppRouter extends RootStackRouter {
-  @override
-  RouteType get defaultRouteType => const RouteType.material();
+class AppRouter {
+  GoRouter get router => _router;
 
-  @override
-  final List<AutoRoute> routes = <AutoRoute>[
-    // Initial route
-    AutoRoute(
-      initial: true,
-      page: ExampleRoute.page,
-    ),
-  ];
+  GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
+
+  final GoRouter _router = GoRouter(
+    navigatorKey: _navigatorKey,
+    observers: <NavigatorObserver>[ScreenLogsRouteObserver()],
+    initialLocation: RouterConstants.exampleRoute,
+    routes: <RouteBase>[
+      GoRoute(
+        path: RouterConstants.exampleRoute,
+        name: RouterConstants.exampleRoute,
+        builder: (BuildContext context, GoRouterState state) => const ExampleScreen(),
+      ),
+      // TODO: Add more routes here
+    ],
+    errorBuilder: (BuildContext context, GoRouterState state) {
+      return Scaffold(
+        body: Center(
+          child: Text('Error: ${state.error}'),
+        ),
+      );
+    },
+  );
 }

@@ -1,17 +1,20 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'example_state.dart';
 
 class ExampleCubit extends Cubit<ExampleState> {
   final ExampleService exampleService = ExampleService.instance;
-  final StackRouter appRouter;
 
-  ExampleCubit({
-    required this.appRouter,
-  }) : super(ExampleState(example: ExampleModel.empty())) {
+  ExampleCubit() : super(ExampleState(example: ExampleModel.empty())) {
     onInit();
   }
+
+  // Example navigation method:
+  // void navigateToDetails() {
+  //   appLocator<AppRouter>().router.push(RouterConstants.detailsRoute);
+  // }
 
   Future<void> onInit() async {
     await loadExample();

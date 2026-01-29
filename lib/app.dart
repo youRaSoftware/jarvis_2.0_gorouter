@@ -29,7 +29,9 @@ class App extends StatelessWidget {
               },
             ),
           ),
-          routerConfig: appLocator<AppRouter>().config(navigatorObservers: () => <NavigatorObserver>[]),
+          routeInformationParser: appLocator<AppRouter>().router.routeInformationParser,
+          routeInformationProvider: appLocator<AppRouter>().router.routeInformationProvider,
+          routerDelegate: appLocator<AppRouter>().router.routerDelegate,
           // builder: (BuildContext _, Widget? child) {
           //   return MediaQuery(
           //     data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
