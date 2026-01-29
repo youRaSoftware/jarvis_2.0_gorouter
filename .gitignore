@@ -156,6 +156,7 @@ CLAUDE.md
 
 # Run configurations
 .run/
+!.run/*.run.xml
 
 # Monarch (if used)
 .monarch/
