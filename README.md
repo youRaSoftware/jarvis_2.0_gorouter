@@ -110,39 +110,20 @@ For presentation layer, every feature (screen) is organized as a separate module
 - For iOS: XCode, CocoaPods
 - For Android: Android Studio, Android SDK
 
-### Optional: FVM (Flutter Version Management)
+### ⚠️ Note: FVM Compatibility
 
-This project uses FVM to manage Flutter SDK version **3.35.3**.
+**This project uses Flutter Workspace** which is currently not supported by FVM. Please use the regular Flutter SDK directly:
 
-1. Install FVM:
 ```bash
-# macOS
-brew tap leoafarias/fvm && brew install fvm
-# OR
-dart pub global activate fvm
+flutter --version  # Ensure you have Flutter >= 3.32.0
+flutter run --dart-define=environment=dev
+flutter pub get
 ```
 
-2. Install project's Flutter version:
-```bash
-fvm install
-fvm use 3.35.3
-```
-
-3. Configure your IDE:
-```bash
-# VS Code: Set "dart.flutterSdkPath": ".fvm/flutter_sdk" in .vscode/settings.json
-# Android Studio/IntelliJ: Set Flutter SDK path to: /path/to/project/.fvm/flutter_sdk
-```
-
-4. Use FVM commands:
-```bash
-fvm flutter run --dart-define=environment=dev
-fvm flutter pub get
-
-# Or configure shell alias (add to ~/.zshrc or ~/.bashrc)
-alias flutter="fvm flutter"
-alias dart="fvm dart"
-```
+If you need to manage multiple Flutter versions, consider using alternatives like:
+- `asdf` with flutter plugin
+- Manual Flutter SDK switching
+- Wait for FVM to add workspace support
 
 ## Setup
 
@@ -276,9 +257,6 @@ Colors and frequently used constants are stored in `core_ui` module.
 ```bash
 # With flavor
 flutter run --dart-define=environment=dev
-
-# Or with FVM
-fvm flutter run --dart-define=environment=dev
 ```
 
 ### Production Build
